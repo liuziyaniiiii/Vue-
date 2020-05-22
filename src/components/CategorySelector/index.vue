@@ -1,17 +1,17 @@
 <template>
   <el-form :inline="true" :model="cList" class="demo-form-inline">
     <el-form-item label="一级分类">
-      <el-select v-model="cList.category1Id" placeholder="选择一级分类"  @change="handelcategory1List">
+      <el-select :disabled="disabled" v-model="cList.category1Id" placeholder="选择一级分类"  @change="handelcategory1List">
         <el-option :label="c.name" :value="c.id" v-for="c in category1List" :key="c.id"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="二级分类">
-      <el-select v-model="cList.category2Id" placeholder="选择二级分类" @change="handelcategory2List">
+      <el-select :disabled="disabled" v-model="cList.category2Id" placeholder="选择二级分类" @change="handelcategory2List">
         <el-option :label="c.name" :value="c.id" v-for="c in category2List" :key="c.id" ></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="三级分类">
-      <el-select v-model="cList.category3Id" placeholder="选择三级分类" @change="handelcategory3List">
+      <el-select :disabled="disabled" v-model="cList.category3Id" placeholder="选择三级分类" @change="handelcategory3List">
          <el-option :label="c.name" :value="c.id" v-for="c in category3List" :key="c.id" ></el-option>
       </el-select>
     </el-form-item>
@@ -23,6 +23,7 @@
     name: 'CategorySelector',
     data() {
       return {
+        disabled:false,
         cList: {
           category1Id: '',
           category2Id: '',

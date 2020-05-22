@@ -21,7 +21,7 @@ export default{
   attrInfo如果有id那就是更新, 如果没有id那就是添加
   */
   addOrUpdate (attrInfo) {
-    return request.post('/admin/product/saveAttrInfo', attrInfo)
+    return requset.post('/admin/product/saveAttrInfo', attrInfo)
   }
 }
 
