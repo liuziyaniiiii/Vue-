@@ -5,7 +5,8 @@
     </el-card>
     <el-card>
       <div v-show="!isShowSpuForm && !isShowSkuForm">
-        <el-button type="primary"  icon="el-icon-plus" style="margin-bottom: 20px">添加SPU</el-button>
+        <el-button type="primary"  icon="el-icon-plus" style="margin-bottom: 20px"
+        @click="showAddSpu">添加SPU</el-button>
         <el-table
           v-loading="loading"
           :data="spuList"
@@ -103,6 +104,12 @@ export default {
       this.isShowSkuForm = true
     },
 
+
+    showAddSpu () {
+
+      this.isShowSpuForm = true
+      this.$refs.spuForm.initLoadAddData()
+    },
     /*
     显示SPU的修改界面
     */
