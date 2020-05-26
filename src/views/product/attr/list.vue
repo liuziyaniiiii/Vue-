@@ -121,15 +121,26 @@ export default {
     /*
     删除指定的属性
     */
-    deleteAttr (id) {
+    async deleteAttr (id) {
       // 请求删除
-      this.$API.attr.remove(id).then(result => {
-        // 重新获取列表显示
-        this.getAttrs()
-      }).catch(error => {
-        this.$message.error('删除属性失败')
-      })
+      const result = await this.$API.attr.removeList(id)
+       if(result.data===200){
+         this.$message.success('删除属性成功')
+         this.getAttrs()
+       }else{
+         this.$message.error('删除属性失败')
+       }
     },
+
+    // deleteAttr (id) {
+    //   // 请求删除
+    //   this.$API.attr.remove(id).then(result => {
+    //     // 重新获取列表显示
+    //     this.getAttrs()
+    //   }).catch(error => {
+    //     this.$message.error('删除属性失败')
+    //   })
+    // },
 
     /*
     保存(添加/更新)属性

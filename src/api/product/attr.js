@@ -1,18 +1,18 @@
-import requset from '@/utils/request'
+import request from '@/utils/request'
 
 //GET /admin/product/attrInfoList/{category1Id}/{category2Id}/{category3Id}
 export default{
   getList(category1Id,category2Id,category3Id){
-    return requset(`/admin/product/attrInfoList/${category1Id}/${category2Id}/${category3Id}`)
+    return request.get(`/admin/product/attrInfoList/${category1Id}/${category2Id}/${category3Id}`)
   },
 
   //删除属性 DELETE /admin/product/deleteAttr/{attrId}
   removeList(id){
-    return requset.delete(`/admin/product/deleteAttr/${id}`)
+    return request.delete(`/admin/product/deleteAttr/${id}`)
   },
   // GET /admin/product/getAttrValueList/{attrId}
   getValueList(attrId){
-    return requset(`/admin/product/getAttrValueList/${attrId}`)
+    return request(`/admin/product/getAttrValueList/${attrId}`)
   },
 
   /*
@@ -21,7 +21,7 @@ export default{
   attrInfo如果有id那就是更新, 如果没有id那就是添加
   */
   addOrUpdate (attrInfo) {
-    return requset.post('/admin/product/saveAttrInfo', attrInfo)
+    return request.post('/admin/product/saveAttrInfo', attrInfo)
   }
 }
 

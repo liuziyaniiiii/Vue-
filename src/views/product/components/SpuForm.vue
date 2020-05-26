@@ -147,11 +147,35 @@ export default {
       const result = await this.$API.spu.addUpdate(spuInfo)
       if(result.code===200){
         this.$message.success('保存SPU成功')
+        // 重置当前组件的数据
+        this.resetData()
+        this.$emit('saveSuccess')
+        this.$emit('update:visible',false)
       }else{
         this.$message.error('保存SPU失败')
+
       }
     },
+    // 重置当前组件的数据
+    resetData(){
+      this.dialogImageUrl = '' // 预览图片的url
+      this.dialogVisible = false // 是否显示预览图片
 
+      this.spuId = null // 当前SPU的id
+      this.spuInfo = {
+        category3Id: 61,
+        spuName: '',
+        description: '',
+        tmId: '',
+        spuImageList: [],
+        spuSaleAttrList: [],
+
+      } // SPU的详细信息
+      this.spuImageList = [] // spu对应的图片列表
+      this.trademarkList = [] // 品牌列表
+      this.saleAttrList = [] // 销售属性列表
+      this.attrIdAttrName = ''
+    },
 
     handleInputConfirm(spuSaleAttr){
 
@@ -278,8 +302,11 @@ export default {
     },
 
     back () {
-      // 分发自定义事件, 让当前Dialog关闭
+      this.resetData()
+      // 分发自定义事件, 让当前spuForm关闭
       this.$emit('update:visible', false)
+      //
+      this.$emit('cancel')
     }
   }
 }
